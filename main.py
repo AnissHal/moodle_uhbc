@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import webbrowser
 import questionary
+import time
 
 with urllib.request.urlopen('https://moodle.univ-chlef.dz/fr/') as fp:
     soup = BeautifulSoup(fp.read(), 'html.parser')
@@ -73,26 +74,29 @@ def get_courses(courses):
             link = course.select('div.coursename')[0].select('a')[0]['href']
             course_link.append(link)
         except IndexError:
-            name = course.select('h3.coursename')[0].string
+            name = course.select('h3.coursename')[0].string      
         course_name.append(name + ' [COURS]')
 
 
 
 get_courses(courses)
 
-
 choices.extend(course_name)
+if choices:
+    choosen_lesson = questionary.select(
+    "CHOOSE YOUR LEVEL",
+    choices=choices
+    ).ask()
 
-choosen_lesson = questionary.select(
-"CHOOSE YOUR LEVEL",
-choices=choices
-).ask()
+else: 
+    print('NO LESSONS YET')
+    time.sleep(2)
+    exit()
 
 if '->' in choosen_lesson:
     course_name = []
     course_link = []
     get_courses(courses)
-    print(course_name)
     choosen_lesson = questionary.select(
     "CHOOSE YOUR COURSE",
     choices=course_name
