@@ -95,6 +95,15 @@ else:
     exit()
 
 if '->' in choosen_lesson:
+    with urllib.request.urlopen(links[choices.index(choosen_lesson)]) as fp:
+        soup = BeautifulSoup(fp.read(), 'html.parser')
+
+    courses = soup.find_all(attrs= {"data-courseid" : True})
+
+    course_name = []
+    course_link = []
+    get_courses(courses)
+
     course_name = []
     course_link = []
     get_courses(courses)
