@@ -72,10 +72,11 @@ def get_courses(courses):
         try:
             name = course.select('div.coursename')[0].string
             link = course.select('div.coursename')[0].select('a')[0]['href']
-            course_link.append(link)
         except IndexError:
-            name = course.select('h3.coursename')[0].string      
+            name = course.select('h3.coursename')[0].string  
+            link = course.select('h3.coursename')[0].select('a')[0]['href']
         course_name.append(name + ' [COURS]')
+        course_link.append(link)
 
 
 
