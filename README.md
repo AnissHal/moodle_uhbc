@@ -3,6 +3,7 @@
 Not official api to access UHBC (Université de Hassiba benbouali) courses and list all faculties using webscraping since there's no official api
 ## Pre-requists
 This library requires `BeautifulSoup` library to work
+Python version `3.x`
 ## How it works
 ### Usage
 ```py
@@ -34,7 +35,7 @@ you can read `id.txt` file to see all selectors possible
 | education_physique_sportive                        | Institut d'Éducation Physique et Sportive                                 |
 | intensif_langues                                   | Centre d'Enseignement Intensif des Langues                                |
 #### Exemple
-if we want courses of second year of english departement foreign langues
+if we want courses of second year of english departement foreign languages
 ```py
 api.select('langues_etrengers.anglais.l2').get_courses()
 ```
