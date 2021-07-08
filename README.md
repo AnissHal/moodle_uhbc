@@ -2,8 +2,7 @@
 ## Introduction
 Not official api to access UHBC (Université de Hassiba benbouali) courses and list all faculties using webscraping since there's no official api
 ## Pre-requists
-This library requires `BeautifulSoup` library to work
-Python version `3.x`
+This library requires `BeautifulSoup` library to work and Python version `3.x`
 ## How it works
 ### Usage
 ```py
@@ -16,6 +15,9 @@ courses = api.select('technologie.electronique.l2').get_courses() # You can chai
 for course in courses:
   print(course.name) # Course name TP: Logique combinatoire et séquentielle 
   print(course.link) # Course link https://moodle.univ-chlef.dz/fr/course/view.php?id=396
+  print(course.access) # see if the course is public or private or requires key password to access
+  info = course.course_info() # this will start a fetch request | returns dict with all info course
+  course.is_public() # returns True if the course is available to guest users and False if private or requires password
 ```
 ### Selector
 The selector works like css selector it starts with faculty name to departemnt name to study year and separated by a `.`
@@ -40,6 +42,7 @@ if we want courses of second year of english departement foreign languages
 api.select('langues_etrengers.anglais.l2').get_courses()
 ```
 ## Todo
-- [] Get Course information about author and if course public
+- [x] Get Course information about author and if course public
+- [ ] Course Content
 ## Licence
 This library is licensed under the MIT.
