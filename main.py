@@ -25,6 +25,10 @@ class Course:
             body = str(body.read()).replace('\\', '').replace('u00e9', 'é').replace(
                 'u00e8', 'è').replace('u00e0', 'à').replace('u2019', "'")
             self.__soup = bs(body.encode('utf8'), 'html.parser')
+    
+    def is_public(self):
+        if self.access == 'public': return True
+        return False
 
     def course_info(self):
         """
