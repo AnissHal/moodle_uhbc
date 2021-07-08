@@ -19,6 +19,22 @@ for course in courses:
   info = course.course_info() # this will start a fetch request | returns dict with all info course
   course.is_public() # returns True if the course is available to guest users and False if private or requires password
 ```
+### course_info() Method
+When the course object is initiated `author` and `desc` attribute are not available until after `course_info()` is called, the reason for this is this method
+makes new fetch request everytime is called, **not recommended** to call this method with large number of courses.
+The method return a `dict` containing all basics informations about the course
+
+#### Method return
+a `dict` containing:
+* `course_id` *integer* Course id's
+* `name` *string* course's name
+* `link` *string* course's link
+* `access` *string* `public`, `private` or `password`, if you want a *boolean* return if course is public there's `is_public()` method
+* `author` *string* Course publisher name
+* `desc` *string* Course description, returns None if no description was found
+
+informations can also be accessed directly via class attributes
+
 ### Selector
 The selector works like css selector it starts with faculty name to departemnt name to study year and separated by a `.`
 selector are in french language and spaces are replaced with `_` and some faculties and departements had been truncated
